@@ -4,7 +4,7 @@ A Finite State Machine library
 * Why
 One could argue that there are a lot of finite state machine libraries out there and that it would be of no utility to create yet onother one. You'd be right; Nonetheless I wanted to do it anyway.
 
-#+INCLUDE: doc/01_What_we_can_do.org
+[[./doc/01_What_we_can_do.org]]
 
 * TODO MANUAL
 
