@@ -22,7 +22,7 @@ int fsm(int def, fsm_input_t (*input)(int), state_callable *S, mux_callable *M, 
   while (s >= 0 && s < DIM) {
     // Function Sj is not requested
     if(S != NULL && S[s] != NULL)
-      out = S[s](in, out, p);
+      out = S[s](in, out, p, i);
     in = input(i++);
     p = s;
     s = M[s](in, p);

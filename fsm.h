@@ -19,12 +19,18 @@ typedef void* fsm_output_t;
 #define FSM_ERROR_STATE_OUT_OF_BOUND -1
 
 /**
+ *
+ */
+#define FSM_INVALID_STATE -1
+
+/**
  * State Function Type
  * - fsm_input_t input;
  * - fsm_output_t output;
  * - int previous_state;
+ * - how many times the input has been read;
  */
-typedef fsm_output_t (*state_callable)(fsm_input_t, fsm_output_t, int);
+typedef fsm_output_t (*state_callable)(fsm_input_t, fsm_output_t, int, int);
 
 /**
   * State Multiplexer Type

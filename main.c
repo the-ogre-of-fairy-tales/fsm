@@ -5,18 +5,18 @@
 
 char* str = NULL;
 
-fsm_output_t s0(fsm_input_t in, fsm_output_t out, int ps) {
+fsm_output_t s0(fsm_input_t in, fsm_output_t out, int ps, int) {
   printf("Stato 0, Stato Precedente: %d\n", ps);
   return NULL;
 }
 
-fsm_output_t s1(fsm_input_t in, fsm_output_t out, int ps) {
+fsm_output_t s1(fsm_input_t in, fsm_output_t out, int ps, int) {
   printf("Stato 1, Stato Precedente: %d\n", ps);
   return NULL;
 }
 
-fsm_output_t s2(fsm_input_t in, fsm_output_t out, int ps) {
-  printf("Stato 2, Stato Precedente: %d\nOK -- 00.\n", ps);
+fsm_output_t s2(fsm_input_t in, fsm_output_t out, int ps, int r) {
+  printf("Stato 2, Stato Precedente: %d\nOK -- 00 @ %d.\n", ps, r - 2);
   return NULL;
 }
 
