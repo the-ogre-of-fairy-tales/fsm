@@ -1,0 +1,11 @@
+digraph {
+    A[label="State 0"]
+    B[label="State 1"]
+    C[label="State 2"]
+
+    A->B[label="input: 0"]
+    A->A[label="input: 1"]
+    B->C[label="input: 0"]
+    B->A[label="input: 1"]
+    C->A[label="input: 1"]
+}

@@ -1,8 +1,30 @@
 #+TITLE: Readme
 A Finite State Machine library
 
+* Why
+One could argue that there are a lot of finite state machine libraries out there and that it would be of no utility to create yet onother one. You'd be right; Nonetheless I wanted to do it anyway.
+
+* The FSM and what this library allows you to do
+** The *F*inite *S*tate *M*achine
+#+BEGIN_QUOTE
+"A finite-state machine (FSM) or finite-state automaton (FSA, plural: automata), finite automaton, or simply a state machine, is a mathematical model of computation. It is an abstract machine that can be in exactly one of a finite number of states at any given time. The FSM can change from one state to another in response to some inputs; the change from one state to another is called a transition.[1] An FSM is defined by a list of its states, its initial state, and the inputs that trigger each transition. Finite-state machines are of two types—deterministic finite-state machines and non-deterministic finite-state machines.[2] A deterministic finite-state machine can be constructed equivalent to any non-deterministic one."
+
+[[https://en.wikipedia.org/wiki/Finite-state_machine][From Wikipedia, the free encyclopedia]].
+#+END_QUOTE
+
+I'm not going to furnish you a guide on how to design your FSM. If you are here, you're supposed to already be knowing it.
+
+** Example of FSM and what the library allows you to do
+To present the main features of this library, let's take a look at the following example:
+
+#+CAPTION: The FSM graph to recognize the sequence "00"
+#+NAME: sr00
+[[./doc/sr00.svg]]
+
+* TODO CONTINUE
+
 * TODO List [0/3]
-- [ ] Write a proper documentation;
+- [-] Write a proper documentation;
   SCHEDULED: <2021-11-28 sun 22:00>
 - [ ] Write a proper README.org;
   SCHEDULED: <2021-11-28 sun 22:00>
