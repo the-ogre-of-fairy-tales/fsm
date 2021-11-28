@@ -1,0 +1,10 @@
+#+TITLE: Readme
+A Finite State Machine library
+
+* TODO List [0/3]
+- [ ] Write a proper documentation;
+  SCHEDULED: <2021-11-28 sun 22:00>
+- [ ] Write a proper README.org;
+  SCHEDULED: <2021-11-28 sun 22:00>
+- [ ] Write proper tests and push them to the repo.
+  SCHEDULED: <2021-11-29 sun 22:00>
