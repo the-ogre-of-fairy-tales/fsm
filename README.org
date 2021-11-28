@@ -4,7 +4,98 @@ A Finite State Machine library
 * Why
 One could argue that there are a lot of finite state machine libraries out there and that it would be of no utility to create yet onother one. You'd be right; Nonetheless I wanted to do it anyway.
 
-#+INCLUDE: "./doc/01_What_we_can_do.org"
+* The FSM and what this library allows you to do
+** The Finite State Machine
+#+BEGIN_QUOTE
+"A finite-state machine (FSM) or finite-state automaton (FSA, plural: automata), finite automaton, or simply a state machine, is a mathematical model of computation. It is an abstract machine that can be in exactly one of a finite number of states at any given time. The FSM can change from one state to another in response to some inputs; the change from one state to another is called a transition.[1] An FSM is defined by a list of its states, its initial state, and the inputs that trigger each transition. Finite-state machines are of two types—deterministic finite-state machines and non-deterministic finite-state machines.[2] A deterministic finite-state machine can be constructed equivalent to any non-deterministic one."
+
+[[https://en.wikipedia.org/wiki/Finite-state_machine][From Wikipedia, the free encyclopedia]].
+#+END_QUOTE
+
+I'm not going to furnish you a guide on how to design your FSM. If you are here, you're supposed to already be knowing it.
+
+** Example of FSM and what the library allows you to do
+To present the main features of this library, let's take a look at the following example:
+
+#+CAPTION: The FSM graph to recognize the sequence "00"
+#+NAME: sr00
+[[./sr00.svg]]
+
+The code will be required to provide the following representations.
+
+*** State Definition
+A FSM machine consisting of ~j~ states will enumerate these states from ~0~ to ~j - 1~. It would be a good thing to declare some constants or an ~enum~:
+
+#+BEGIN_SRC c
+#define STATE_0 0
+#define STATE_1 1
+#define STATE_2 2
+#+END_SRC
+
+*** Mux Definition
+The user must provide a function -- the mux -- for each state. This function receives as input the machine input and the previous state. Given these inputs, the mux will tell to the machine the next state. In the example, the mux for the state ~0~ would be:
+
+#+BEGIN_SRC c
+int mux0(fsm_input_t in, int prev_state) {
+  switch(in) { // Assuming `fsm_input_t` to be `char`
+    case '0':
+      return STATE_1;
+    case '1':
+      return STATE_0;
+    default:
+      return FSM_INVALID_STATE; // Would cause the machine to stop
+  }
+}
+#+END_SRC
+
+*** State Functors Definition
+Even if it is not mandatory, the user could bind a function to each state. This means that when the machine switches to state ~n~ a function ~sn~ is called. To this function, FSM will pass three parameters:
+- The machine input;
+- The output handler (a pointer, a file descriptor, a struct, ...);
+- The previous state;
+- How many times the input has been read.
+
+The function could return an output. The output of a state function is passed to the /next invoked/ state function.
+
+An example:
+#+BEGIN_SRC c
+fsm_output_t s2(fsm_input_t in, fsm_output out, int ps, int r) {
+  printf("Sequence found! Index: ", r - 2);
+}
+#+END_SRC
+
+*** Input Definition
+The other important definition is the ~input~ function. The input function is defined as the following:
+#+BEGIN_SRC c
+fsm_input_t input(int);
+#+END_SRC
+
+Each time ~input(i)~ is called, it returns a new reading. The parameter represents the time that the function itself has been called by the FSM.
+
+*** Representation and Starting
+These elements that we just discussed have to be combined together in this way:
+
+#+BEGIN_SRC c
+#define N_OF_STATES 3
+
+// The state functions vector
+state_callabe F[N_OF_STATES];
+
+F[0] = NULL;
+F[1] = NULL;
+F[2] = &s2;
+
+// The mux for each state
+mux_callable M[N_OF_STATES];
+
+M[0] = &mux0;
+M[1] = &mux1;
+M[2] = &mux2;
+
+// To start the machine
+// 0 is the default state
+int r = fsm(0, &input, F, M, N_OF_STATES);
+#+END_SRC
 
 * TODO MANUAL
 
