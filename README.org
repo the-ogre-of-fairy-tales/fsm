@@ -19,7 +19,7 @@ To present the main features of this library, let's take a look at the following
 
 #+CAPTION: The FSM graph to recognize the sequence "00"
 #+NAME: sr00
-[[./sr00.svg]]
+[[./doc/sr00.svg]]
 
 The code will be required to provide the following representations.
 
